@@ -5,8 +5,9 @@ skills-lock.json
 # Archivos de oficina y documentos fuente originales
 *.docx
 *.doc
-*.xlsx
 *.pdf
+!Propuesta_Abby_Kingdom.pdf
+!Recibo_Anticipo_Abby_Kingdom.pdf
 
 # Archivos temporales y del sistema
 *.log

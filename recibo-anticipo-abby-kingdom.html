@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante de Anticipo 50% • Abby Kingdom | Electro Shop</title>
+  
+  <link rel="icon" type="image/png" href="assets/electroshop_logo.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Tipografías Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0F172A;
+      --accent: #0284C7;
+      --accent-dark: #0369A1;
+      --emerald: #166534;
+      --emerald-bg: #DCFCE7;
+      --border: #CBD5E1;
+      --border-light: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-soft: #64748B;
+      --bg-alt: #F8FAFC;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #F1F5F9;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px 0;
+    }
+
+    .sheet {
+      width: 216mm;
+      min-height: 279mm;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 12mm 14mm;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* BARRA SUPERIOR DE ACCIONES (SOLO PANTALLA) */
+    .action-bar {
+      width: 216mm;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-print {
+      background: #0284C7;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover {
+      background: #0369A1;
+    }
+
+    .btn-back {
+      color: #475569;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* HEADER / MEMBRETE OFICIAL ELECTRO SHOP */
+    .invoice-header {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 16px;
+      align-items: start;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .company-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .company-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--accent);
+      background: #070A12;
+      flex-shrink: 0;
+    }
+
+    .company-details h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .company-details p {
+      font-size: 7.6pt;
+      color: var(--text-muted);
+      line-height: 1.25;
+      margin-top: 2px;
+    }
+
+    /* CAJA DE IDENTIFICACIÓN DEL COMPROBANTE */
+    .receipt-id-box {
+      border: 1.5px solid var(--primary);
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: var(--bg-alt);
+      text-align: right;
+    }
+
+    .receipt-id-box .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .receipt-id-box .doc-code {
+      font-size: 11pt;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 2px 0;
+    }
+
+    .receipt-id-box .meta-row {
+      font-size: 7.8pt;
+      color: var(--text-muted);
+    }
+
+    .badge-paid-advance {
+      display: inline-block;
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid #86EFAC;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 7.4pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* DATOS DEL CLIENTE Y OPERACIÓN */
+    .client-data-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 8.2pt;
+    }
+
+    .client-data-col p {
+      margin-bottom: 2px;
+      color: var(--text-muted);
+    }
+
+    .client-data-col strong {
+      color: var(--primary);
+    }
+
+    /* TABLA DE PARTIDAS TIPO FACTURA */
+    .table-container {
+      margin-bottom: 10px;
+    }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+    }
+
+    .invoice-table th {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      padding: 6px 8px;
+      text-align: left;
+      font-size: 8pt;
+      letter-spacing: 0.02em;
+    }
+
+    .invoice-table td {
+      padding: 7px 8px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-main);
+      vertical-align: top;
+    }
+
+    .invoice-table tbody tr:nth-child(even) {
+      background-color: #FAFAFC;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      font-size: 8.3pt;
+      margin-bottom: 1px;
+    }
+
+    .item-desc {
+      font-size: 7.2pt;
+      color: var(--text-soft);
+      line-height: 1.25;
+      display: block;
+    }
+
+    /* RESUMEN DE TOTALES Y ANTICIPO 50% */
+    .bottom-summary-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-top: 4px;
+      padding-top: 6px;
+    }
+
+    .payment-instructions {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 7.4pt;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .payment-instructions strong {
+      color: var(--primary);
+    }
+
+    .totals-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.2pt;
+    }
+
+    .totals-table td {
+      padding: 4px 6px;
+      text-align: right;
+    }
+
+    .totals-table .label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .totals-table .amount {
+      color: var(--primary);
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      font-size: 9pt;
+    }
+
+    .totals-table .row-total td {
+      border-top: 1.5px solid var(--primary);
+      padding-top: 5px;
+      font-size: 9.5pt;
+      font-weight: 800;
+    }
+
+    .totals-table .row-advance td {
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      font-weight: 800;
+      font-size: 9.8pt;
+      border-radius: 4px;
+      padding: 5px 6px;
+    }
+
+    .totals-table .row-pending td {
+      background: #FEF2F2;
+      color: #991B1B;
+      font-weight: 800;
+      font-size: 9.2pt;
+      border-radius: 4px;
+      padding: 4px 6px;
+    }
+
+    /* CONDICIONES & GARANTÍA */
+    .terms-block {
+      border-top: 1px solid var(--border-light);
+      padding-top: 8px;
+      margin-top: 10px;
+      font-size: 7.2pt;
+      color: var(--text-soft);
+      line-height: 1.35;
+    }
+
+    .terms-block strong {
+      color: var(--primary);
+    }
+
+    /* FIRMAS FORMALES */
+    .signatures-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 22px;
+      padding-top: 4px;
+      text-align: center;
+    }
+
+    .sig-line {
+      border-top: 1px solid var(--primary);
+      padding-top: 4px;
+      font-size: 7.5pt;
+      color: var(--text-muted);
+    }
+
+    .sig-line strong {
+      color: var(--primary);
+      font-size: 8.2pt;
+      display: block;
+    }
+
+    /* ===================================================
+       ESTILOS CRÍTICOS PARA IMPRESIÓN (1 PÁGINA EXACTA)
+       =================================================== */
+    @media print {
+      @page {
+        size: letter portrait;
+        margin: 6mm 8mm;
+      }
+
+      body {
+        background: #FFFFFF !important;
+        padding: 0 !important;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .sheet {
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        min-height: auto !important;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE ACCIONES (SOLO VISIBLE EN NAVEGADOR) -->
+  <div class="action-bar">
+    <a href="index.html" class="btn-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span>Volver a la Propuesta Completa</span>
+    </a>
+    <button onclick="window.print()" class="btn-print">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span>Imprimir / Descargar Comprobante PDF (1 Hoja)</span>
+    </button>
+  </div>
+
+  <div class="sheet">
+    
+    <div>
+      <!-- MEMBRETE OFICIAL EXCLUSIVO DE ELECTRO SHOP -->
+      <header class="invoice-header">
+        <div class="company-brand">
+          <img src="assets/electroshop_logo.png" alt="Electro Shop Logo" class="company-logo">
+          <div class="company-details">
+            <h1>ELECTRO SHOP MORANDÍN C.A.</h1>
+            <p><strong>Automatización, Control de Acceso & Seguridad Electrónica</strong></p>
+            <p>RIF: J-50141697-3 • Edif. C.E. Marjoca, P1-L08, Calle 26 e/ car. 3 y 5, Guanare, Portuguesa</p>
+            <p>Contacto: Ing. Andrés Morandín • WhatsApp: +58 257 2511282 • www.electroshopve.com</p>
+          </div>
+        </div>
+
+        <div class="receipt-id-box">
+          <div class="doc-title">Recibo de Anticipo</div>
+          <div class="doc-code">N° REC-2026-AK01</div>
+          <div class="meta-row"><strong>Fecha:</strong> 05 de Septiembre de 2026</div>
+          <div class="meta-row"><strong>Ref. Propuesta:</strong> PROP-2026-AK01</div>
+          <div><span class="badge-paid-advance">✓ Anticipo 50% Confirmado</span></div>
+        </div>
+      </header>
+
+      <!-- DATOS DEL CLIENTE -->
+      <section class="client-data-card">
+        <div class="client-data-col">
+          <p><strong>Cliente / Empresa:</strong> Abby Kingdom</p>
+          <p><strong>Representante:</strong> Eva Briceño</p>
+          <p><strong>Cédula de Identidad:</strong> C.I. 27.277.900</p>
+        </div>
+        <div class="client-data-col" style="text-align: right;">
+          <p><strong>Ubicación del Local:</strong> Guanare, Estado Portuguesa, Venezuela</p>
+          <p><strong>Modalidad:</strong> Anticipo Inicial para Adquisición e Instalación</p>
+          <p><strong>Validez de Términos:</strong> 15 días continuos</p>
+        </div>
+      </section>
+
+      <!-- TABLA DE PARTIDAS CONTRATADAS -->
+      <div class="table-container">
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th style="width: 6%; text-align: center;">Ítem</th>
+              <th style="width: 58%;">Descripción del Equipo / Servicio Contratado</th>
+              <th style="width: 10%; text-align: center;">Cant.</th>
+              <th style="width: 13%; text-align: right;">Precio Unit.</th>
+              <th style="width: 13%; text-align: right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1. Plan Básico -->
+            <tr>
+              <td style="text-align: center; font-weight: 700;">1</td>
+              <td>
+                <span class="item-title">Plan Básico de Taquilla y Cronometraje en Sala</span>
+                <span class="item-desc">Incluye Licencia de Software Web de control de tiempos para parque infantil, Escáner 2D USB Symcode MJ-2877 de alta velocidad, lote inicial de 1,000 pulseras Tyvek personalizables con código único, instalación física, cableado y capacitación técnica de personal.</span>
+              </td>
+              <td style="text-align: center; font-weight: 600;">1</td>
+              <td style="text-align: right;">$480.00</td>
+              <td style="text-align: right; font-weight: 700;">$480.00</td>
+            </tr>
+
+            <!-- 2. Módulo Restaurante / Mesas -->
+            <tr>
+              <td style="text-align: center; font-weight: 700;">2</td>
+              <td>
+                <span class="item-title">Módulo Integral de Restaurante / POS Gastronómico</span>
+                <span class="item-desc">Toma de comandas móviles en mesa desde smartphones/tablets para mesoneros, pantalla de cocina en tiempo real (KDS), control de inventario de insumos con alerta de stock, pagos multimétodo y facturación. <em>(Compatible con impresoras térmicas de tickets 80mm ESC/POS)</em>.</span>
+              </td>
+              <td style="text-align: center; font-weight: 600;">1</td>
+              <td style="text-align: right;">$250.00</td>
+              <td style="text-align: right; font-weight: 700;">$250.00</td>
+            </tr>
+
+            <!-- 3. Cámara Opción A -->
+            <tr>
+              <td style="text-align: center; font-weight: 700;">3</td>
+              <td>
+                <span class="item-title">Cámara de Vigilancia Ezviz H1c 1080p Nocturna (Opción A)</span>
+                <span class="item-desc">Cámara de supervisión fija para mostrador/caja. Resolución Full HD 1080p (2MP), lente gran angular de 108°, visión nocturna infrarroja hasta 10m, audio bidireccional y base magnética orientable.</span>
+              </td>
+              <td style="text-align: center; font-weight: 600;">1</td>
+              <td style="text-align: right;">$62.00</td>
+              <td style="text-align: right; font-weight: 700;">$62.00</td>
+            </tr>
+
+            <!-- 4. Cámara Opción B -->
+            <tr>
+              <td style="text-align: center; font-weight: 700;">4</td>
+              <td>
+                <span class="item-title">Cámara de Seguridad Ezviz H7c 2K Doble Lente PTZ 360° (Opción B)</span>
+                <span class="item-desc">Para área central de juegos. Doble sensor simultáneo 2K (Lente superior motorizado 360° + Lente inferior fijo), co-detección y seguimiento inteligente de niños con IA, visión nocturna a color, botón táctil de llamada directa y Wi-Fi Dual Band con puerto Ethernet RJ45.</span>
+              </td>
+              <td style="text-align: center; font-weight: 600;">1</td>
+              <td style="text-align: right;">$128.00</td>
+              <td style="text-align: right; font-weight: 700;">$128.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DESGLOSE DE TOTALES Y ANTICIPO 50% -->
+      <div class="bottom-summary-grid">
+        <div class="payment-instructions">
+          <p><strong>Condición de Pago Acordada:</strong></p>
+          <p>• <strong>50% de Anticipo Inicial:</strong> Para adquisición inmediata de equipos y desarrollo de software.</p>
+          <p>• <strong>50% Saldo Restante:</strong> A ser liquidado al culminar la instalación, pruebas y puesta en marcha.</p>
+          <p style="margin-top: 4px;">• <strong>Renta Mensual VPS ($70.00 / mes):</strong> Hosting cloud, base de datos en tiempo real y soporte continuo. Iniciará una vez entregado el sistema operativo en local.</p>
+        </div>
+
+        <div>
+          <table class="totals-table">
+            <tr>
+              <td class="label">Monto Total del Proyecto:</td>
+              <td class="amount">$920.00 USD</td>
+            </tr>
+            <tr class="row-advance">
+              <td class="label" style="color: var(--emerald);">ANTICIPO PAGADO (50%):</td>
+              <td class="amount" style="color: var(--emerald); font-size: 11pt;">$460.00 USD</td>
+            </tr>
+            <tr class="row-pending">
+              <td class="label" style="color: #991B1B;">SALDO RESTANTE (50%):</td>
+              <td class="amount" style="color: #991B1B; font-size: 10pt;">$460.00 USD</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- TÉRMINOS, TIEMPOS Y GARANTÍA -->
+      <div class="terms-block">
+        <p><strong>Términos de Ejecución & Garantía:</strong></p>
+        <p>1. <strong>Plazo de Entrega:</strong> 10 a 15 días hábiles a partir de la confirmación del presente anticipo.</p>
+        <p>2. <strong>Garantía:</strong> <strong>1 mes de garantía directa</strong> en equipamiento suministrado (lectores, escáner, cámaras y materiales).</p>
+        <p>3. <strong>Soporte Técnico:</strong> Electro Shop Morandín C.A. garantiza el acompañamiento en la puesta en marcha inicial del parque infantil.</p>
+      </div>
+    </div>
+
+    <!-- ÁREA DE FIRMAS FORMAL -->
+    <div class="signatures-row">
+      <div>
+        <div class="sig-line">
+          <strong>Por Electro Shop Morandín C.A.</strong>
+          Ing. Andrés Morandín • RIF: J-50141697-3<br>
+          Comprobante de Recepción de Anticipo
+        </div>
+      </div>
+      <div>
+        <div class="sig-line">
+          <strong>Por Abby Kingdom</strong>
+          Eva Briceño • C.I. 27.277.900<br>
+          Conformidad de Pedido y Anticipo (50%)
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
