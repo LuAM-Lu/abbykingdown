@@ -612,51 +612,6 @@
       margin-top: 2px;
     }
 
-    /* SIMULADOR INTERACTIVO DE CÁMARAS */
-    .sim-calc-box {
-      background: rgba(14, 25, 52, 0.6);
-      border: 1px solid var(--border-glow);
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin: 24px 0 10px 0;
-    }
-
-    .sim-calc-controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1.2fr;
-      gap: 16px;
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .sim-calc-controls {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .sim-input-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .sim-select {
-      width: 100%;
-      background: rgba(6, 12, 28, 0.9);
-      border: 1px solid var(--border-outer);
-      color: #FFF;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .sim-select:focus {
-      border-color: var(--cyan);
-    }
-
     /* CONDICIONES CLARAS */
     .conditions-row {
       display: grid;
@@ -1444,40 +1399,7 @@
 
         </div>
 
-        <!-- SIMULADOR INTERACTIVO WEB DE CÁMARAS -->
-        <div class="sim-calc-box no-print">
-          <div style="margin-bottom: 12px;">
-            <strong style="color: #FFF; font-size: 0.95rem;">Simulador de Presupuesto Consolidado con Cámaras:</strong>
-            <p style="font-size: 0.8rem; color: var(--text-muted);">Seleccione la cantidad de cámaras que desea incorporar para calcular la inversión total al instante:</p>
-          </div>
-          <div class="sim-calc-controls">
-            <div class="sim-input-group">
-              <label for="cantH1c">Ezviz H1c Fija ($62 c/u):</label>
-              <select id="cantH1c" class="sim-select" onchange="actualizarTotalDinamico()">
-                <option value="0">0 unidades ($0.00)</option>
-                <option value="1" selected>1 unidad ($62.00) [Ref.]</option>
-                <option value="2">2 unidades ($124.00)</option>
-                <option value="3">3 unidades ($186.00)</option>
-                <option value="4">4 unidades ($248.00)</option>
-              </select>
-            </div>
-            <div class="sim-input-group">
-              <label for="cantH7c">Ezviz H7c 2K Dual ($128 c/u):</label>
-              <select id="cantH7c" class="sim-select" onchange="actualizarTotalDinamico()">
-                <option value="0">0 unidades ($0.00)</option>
-                <option value="1" selected>1 unidad ($128.00) [Ref.]</option>
-                <option value="2">2 unidades ($256.00)</option>
-                <option value="3">3 unidades ($384.00)</option>
-                <option value="4">4 unidades ($512.00)</option>
-              </select>
-            </div>
-            <div style="background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 10px; padding: 10px 14px; text-align: right;">
-              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Inversión Total Simulada:</span>
-              <strong id="granTotalSimulado" style="font-size: 1.45rem; color: var(--cyan); display: block;">$920.00 USD</strong>
-              <span style="font-size: 0.72rem; color: var(--text-soft);">Base $730 + Cámaras seleccionadas</span>
-            </div>
-          </div>
-        </div>
+
 
       </section>
 
@@ -1510,7 +1432,7 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--emerald)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <span>Garantía & Validez</span>
             </div>
-            <span><strong>12 meses de garantía directa</strong> en equipos. Propuesta válida por <strong>15 días continuos</strong>.</span>
+            <span><strong>1 mes de garantía directa</strong> en equipos. Propuesta válida por <strong>15 días continuos</strong>.</span>
           </div>
 
         </div>
@@ -1620,18 +1542,6 @@
     </div>
   </footer>
 
-  <script>
-    // SIMULADOR INTERACTIVO DE INVERSIÓN CON CÁMARAS
-    function actualizarTotalDinamico() {
-      const base = 730; // Subtotal base (Taquilla $480 + Restaurante $250)
-      const cantH1c = parseInt(document.getElementById('cantH1c').value) || 0;
-      const cantH7c = parseInt(document.getElementById('cantH7c').value) || 0;
-      
-      const totalCamaras = (cantH1c * 62) + (cantH7c * 128);
-      const granTotal = base + totalCamaras;
-      
-      document.getElementById('granTotalSimulado').innerText = '$' + granTotal.toFixed(2) + ' USD';
-    }
-  </script>
+
 </body>
 </html>
