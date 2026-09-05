@@ -1,0 +1,21 @@
+# Dependencias y entornos de agentes
+.agents/
+skills-lock.json
+
+# Archivos de oficina y documentos fuente originales
+*.docx
+*.doc
+*.xlsx
+*.pdf
+
+# Archivos temporales y del sistema
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/

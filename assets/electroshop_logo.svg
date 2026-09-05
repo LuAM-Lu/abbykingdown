@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="50%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#0077fe" />
+    </linearGradient>
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <style>
+    .bg { fill: #070a12; }
+    .hexagon {
+      fill: none;
+      stroke: #00e5ff;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#neonGlow);
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: drawHex 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .bolt {
+      fill: url(#cyanGlow);
+      filter: url(#neonGlow);
+      opacity: 0;
+      transform-origin: center;
+      animation: pulseBolt 1.2s ease-out 1.2s forwards, boltFloat 4s ease-in-out 2.4s infinite;
+    }
+    .text-title {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      fill: #ffffff;
+      letter-spacing: 10px;
+      text-anchor: middle;
+      filter: url(#neonGlow);
+      opacity: 0;
+      animation: fadeInText 1s ease-out 1.8s forwards;
+    }
+    .text-sub {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      fill: #00e5ff;
+      letter-spacing: 12px;
+      text-anchor: middle;
+      opacity: 0;
+      animation: fadeInText 1s ease-out 2.2s forwards;
+    }
+    .line-accent {
+      stroke: #00e5ff;
+      stroke-width: 3;
+      stroke-linecap: round;
+      opacity: 0;
+      animation: fadeInText 1s ease-out 2.2s forwards;
+    }
+    @keyframes drawHex {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes pulseBolt {
+      0% { opacity: 0; transform: scale(0.3); }
+      70% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes boltFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <rect width="1000" height="1000" class="bg" />
+  
+  <!-- Hexagon Circuit Shield -->
+  <polygon points="500,220 730,350 730,620 500,750 270,620 270,350" class="hexagon" />
+  
+  <!-- Central Tech Bolt -->
+  <g class="bolt">
+    <polygon points="520,330 430,490 495,490 470,640 575,470 510,470" />
+  </g>
+  
+  <!-- Typography -->
+  <text x="500" y="825" class="text-title">ELECTRO SHOP</text>
+  <text x="500" y="865" class="text-sub">ELECTRONICS &amp; TECHNOLOGY</text>
+  <line x1="280" y1="890" x2="720" y2="890" class="line-accent" />
+</svg>
